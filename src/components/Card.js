@@ -1,13 +1,10 @@
 import styled from "styled-components";
 
-export default function Card() {
+export default function Card({ name, image }) {
   return (
     <CardContainer>
-      <Img
-        src="https://rickandmortyapi.com/api/character/avatar/2.jpeg"
-        alt="Morty Smith"
-      />
-      <CharacterName>Morty Smith</CharacterName>
+      <Img src={image} alt={name} />
+      <CharacterName>{name}</CharacterName>
       <ShowMoreBtn>Show more</ShowMoreBtn>
     </CardContainer>
   );
