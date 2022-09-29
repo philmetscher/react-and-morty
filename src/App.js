@@ -1,41 +1,68 @@
+import styled from "styled-components";
+
+import Header from "./components/Header";
+import Card from "./components/Card";
+import Navigation from "./components/Navigation";
+
 function App() {
   return (
-    <div className="App">
-      <header>
-        <h1>React and Morty</h1>
-      </header>
-      <main>
-        <section>
-          <article>
-            <img
-              src="https://rickandmortyapi.com/api/character/avatar/2.jpeg"
-              alt="Morty Smith"
-            />
-            <p>Morty Smith</p>
-            <button>Show more</button>
-          </article>
-        </section>
-      </main>
-      <footer>
-        <nav>
-          <ul>
-            <li>
-              <a href="#">Link1</a>
-            </li>
-            <li>
-              <a href="#">Link2</a>
-            </li>
-            <li>
-              <a href="#">Link3</a>
-            </li>
-            <li>
-              <a href="#">Link4</a>
-            </li>
-          </ul>
-        </nav>
-      </footer>
-    </div>
+    <AppContainer>
+      <Header />
+      <Main>
+        <CardsWrapper>
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+        </CardsWrapper>
+      </Main>
+      <NavigationWrapper>
+        <Navigation />
+      </NavigationWrapper>
+    </AppContainer>
   );
 }
+
+const AppContainer = styled.div`
+  display: grid;
+  grid-template-rows: 80px 1fr;
+  width: 100%;
+  min-height: 100vh;
+  padding-bottom: 80px;
+`;
+const Main = styled.main`
+  width: 100%;
+  height: 100%;
+  padding: 50px 0;
+  max-width: 1400px;
+  margin: 0 auto;
+`;
+const CardsWrapper = styled.section`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: row wrap;
+  gap: 50px;
+  width: 100%;
+  height: 100%;
+`;
+const NavigationWrapper = styled.footer`
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  background: var(--primary);
+`;
 
 export default App;
