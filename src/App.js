@@ -1,11 +1,16 @@
 import styled from "styled-components";
 import { useEffect, useState } from "react";
+import { Route, Routes, useParams } from "react-router-dom";
 
 import Header from "./components/Header";
 import Card from "./components/Card";
 import Navigation from "./components/Navigation";
 
+import StartPage from "./pages/Startpage";
+import Character from "./pages/Character";
+
 function App() {
+  let { characterId } = useParams();
   const [characters, setCharacters] = useState([]);
 
   useEffect(() => {
@@ -14,24 +19,38 @@ function App() {
         const response = await fetch(URL);
         const data = await response.json();
 
-        console.log(data.results);
         setCharacters(data.results);
       } catch (error) {
         console.error(error);
       }
     }
     fetchCharacters("https://rickandmortyapi.com/api/character");
-  }, [characters]);
+  }, []);
 
   return (
     <AppContainer>
       <Header />
       <Main>
-        <CardsWrapper>
-          {characters.map(({ name, image }) => (
-            <Card name={name} image={image} />
-          ))}
-        </CardsWrapper>
+        <Routes>
+          <Route
+            path="/detail/character/:characterId"
+            element={
+              <CardsWrapper>
+                <Character />
+              </CardsWrapper>
+            }
+            end
+          />
+          <Route
+            path="*"
+            element={
+              <CardsWrapper>
+                <StartPage characters={characters} />
+              </CardsWrapper>
+            }
+            end
+          />
+        </Routes>
       </Main>
       <NavigationWrapper>
         <Navigation />
